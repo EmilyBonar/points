@@ -43,9 +43,9 @@ function draw() {
 					x: p.x + Math.random() * 2 - Math.min(1, p.x),
 					y: p.y + Math.random() * 2 - Math.min(1, p.y),
 					radius: p.radius + Math.random() * 0.5 - Math.min(0.25, p.radius),
-					r: p.r + Math.random() * 30 - Math.min(15, p.r),
-					g: p.g + Math.random() * 30 - Math.min(15, p.g),
-					b: p.b + Math.random() * 30 - Math.min(15, p.b),
+					r: clamp(p.r + Math.random() * 30 - Math.min(15, p.r), 0, 255),
+					g: clamp(p.g + Math.random() * 30 - Math.min(15, p.g), 0, 255),
+					b: clamp(p.b + Math.random() * 30 - Math.min(15, p.b), 0, 255),
 				};
 				points[x][y] = new_p;
 				drawPoint(
@@ -58,6 +58,10 @@ function draw() {
 			}
 		}
 	}
+}
+
+function clamp(number: number, min: number, max: number) {
+	return Math.max(min, Math.min(number, max));
 }
 
 function drawPoint(
